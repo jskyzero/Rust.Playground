@@ -1,5 +1,8 @@
 # RUST-PLAYGROUND
-`jskyzero` `2020/06/30`
+[![jskyzero](https://img.shields.io/badge/Author-jskyzero-brightgreen.svg?style=flat)]()
+[![2020/06/30](https://img.shields.io/badge/Data-2020/06/30-brightgreen.svg?style=flat)]()
+[![Rust](https://github.com/oYOvOYo/Rust.Playground/workflows/Rust/badge.svg)]()
+
 
 ## Overview
 
