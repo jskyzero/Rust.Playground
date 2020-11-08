@@ -17,6 +17,6 @@ charset = utf-8
 indent_style = tab
 
 # For Rust
-[*.{rs}]
+[*.{rs,RS}]
 indent_style = space
 indent_size = 4

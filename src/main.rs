@@ -2,35 +2,38 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
+mod leetcode;
+
+
 fn main() {
-  println!("Guess Game v0.1");
+    println!("Guess Game v0.1");
+    
+    let secret_number = rand::thread_rng().gen_range(1, 101);
+    println!("The Secret Number is {}", secret_number);
 
-  let secret_number = rand::thread_rng().gen_range(1, 101);
-  println!("The Secret Number is {}", secret_number);
+    loop {
+        println!("Input Your Number");
 
-  loop {
-    println!("Input Your Number");
+        let mut guess = String::new();
 
-    let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
 
-    io::stdin()
-      .read_line(&mut guess)
-      .expect("Failed to read line");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
-    let guess: u32 = match guess.trim().parse() {
-      Ok(num) => num,
-      Err(_) => continue,
-    };
+        println!("you guessed: {}", guess);
 
-    println!("you guessed: {}", guess);
-
-    match guess.cmp(&secret_number) {
-      Ordering::Equal => {
-        println!("Equal");
-        break;
-      }
-      Ordering::Greater => println!("Greater"),
-      Ordering::Less => println!("Less"),
-    };
-  }
+        match guess.cmp(&secret_number) {
+            Ordering::Equal => {
+                println!("Equal");
+                break;
+            }
+            Ordering::Greater => println!("Greater"),
+            Ordering::Less => println!("Less"),
+        };
+    }
 }
