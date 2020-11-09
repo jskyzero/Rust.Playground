@@ -1,6 +1,3 @@
-// Input: nums = [1,2,3,4]
-// Output: [1,3,6,10]
-// Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
 pub fn running_sum(nums: Vec<i32>) -> Vec<i32> {
     let mut next: i32 = 0;
     let mut result: Vec<i32> = Vec::new();
@@ -64,3 +61,65 @@ impl SubrectangleQueries {
         return self.rectangle[row as usize][col as usize];
     }
 }
+
+
+pub fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
+    let mut result:Vec<i32> = Vec::new();
+    for i in 0..n {
+        result.push(nums[i as usize]);
+        result.push(nums[(i+n) as usize]);
+    }
+    return result;
+}
+
+pub fn restore_string(s: String, indices: Vec<i32>) -> String {
+    let mut result = s.clone().into_bytes();
+    for i in 0..indices.len() {
+        let c:char = s.chars().nth(i as usize).unwrap();
+        result[indices[i as usize] as usize] = c as u8;
+    }
+    return String::from_utf8(result).expect("Found invalid UTF-8");
+}
+
+pub fn number_of_steps (num: i32) -> i32 {
+    let mut result = 0;
+    let mut n = num;
+    while n > 0 {
+        if n % 2 == 0 {
+            n = n / 2;
+        } else {
+            n = n - 1;
+        }
+        result = result + 1;
+    }
+    return result;
+}
+
+use std::collections::HashSet;
+
+pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
+        let mut set:HashSet<i32> = HashSet::new();
+        let mut map:Vec<i32> = vec![0;101];
+        let mut result = 0;
+
+        for i in nums {
+            set.insert(i);
+            map[i as usize] = map[i as usize] + 1;
+        }
+
+        for i in set {
+            let n = map[i as usize];
+            if n >= 2 {
+                result += ((n - 1) + 1) * (n -1) / 2;
+            }
+        }
+        return result;
+}
+
+// fn factorial(num: i32) -> i32 {
+//     match num {
+//         0 => 1,
+//         1 => 1,
+//         _ => factorial(num - 1) * num,
+//     }
+// }
