@@ -34,40 +34,35 @@ struct SubrectangleQueries {
     rectangle: Vec<Vec<i32>>,
 }
 
-
-/** 
+/**
  * `&self` means the method takes an immutable reference.
  * If you need a mutable reference, change it to `&mut self` instead.
  */
 impl SubrectangleQueries {
-
     fn new(rectangle: Vec<Vec<i32>>) -> Self {
         let rectangle = SubrectangleQueries {
-            rectangle: rectangle.clone()
+            rectangle: rectangle.clone(),
         };
         return rectangle;
     }
-    
     fn update_subrectangle(&mut self, row1: i32, col1: i32, row2: i32, col2: i32, new_value: i32) {
-        for i in row1..row2+1 {
-            for j in col1..col2+1 {
+        for i in row1..row2 + 1 {
+            for j in col1..col2 + 1 {
                 self.rectangle[i as usize][j as usize] = new_value;
                 println!("{}", self.rectangle[i as usize][j as usize]);
             }
         }
     }
-    
     fn get_value(&self, row: i32, col: i32) -> i32 {
         return self.rectangle[row as usize][col as usize];
     }
 }
 
-
 pub fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
-    let mut result:Vec<i32> = Vec::new();
+    let mut result: Vec<i32> = Vec::new();
     for i in 0..n {
         result.push(nums[i as usize]);
-        result.push(nums[(i+n) as usize]);
+        result.push(nums[(i + n) as usize]);
     }
     return result;
 }
@@ -75,13 +70,13 @@ pub fn shuffle(nums: Vec<i32>, n: i32) -> Vec<i32> {
 pub fn restore_string(s: String, indices: Vec<i32>) -> String {
     let mut result = s.clone().into_bytes();
     for i in 0..indices.len() {
-        let c:char = s.chars().nth(i as usize).unwrap();
+        let c: char = s.chars().nth(i as usize).unwrap();
         result[indices[i as usize] as usize] = c as u8;
     }
     return String::from_utf8(result).expect("Found invalid UTF-8");
 }
 
-pub fn number_of_steps (num: i32) -> i32 {
+pub fn number_of_steps(num: i32) -> i32 {
     let mut result = 0;
     let mut n = num;
     while n > 0 {
@@ -98,22 +93,22 @@ pub fn number_of_steps (num: i32) -> i32 {
 use std::collections::HashSet;
 
 pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
-        let mut set:HashSet<i32> = HashSet::new();
-        let mut map:Vec<i32> = vec![0;101];
-        let mut result = 0;
+    let mut set: HashSet<i32> = HashSet::new();
+    let mut map: Vec<i32> = vec![0; 101];
+    let mut result = 0;
 
-        for i in nums {
-            set.insert(i);
-            map[i as usize] = map[i as usize] + 1;
-        }
+    for i in nums {
+        set.insert(i);
+        map[i as usize] = map[i as usize] + 1;
+    }
 
-        for i in set {
-            let n = map[i as usize];
-            if n >= 2 {
-                result += ((n - 1) + 1) * (n -1) / 2;
-            }
+    for i in set {
+        let n = map[i as usize];
+        if n >= 2 {
+            result += ((n - 1) + 1) * (n - 1) / 2;
         }
-        return result;
+    }
+    return result;
 }
 
 // fn factorial(num: i32) -> i32 {
@@ -123,3 +118,56 @@ pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
 //         _ => factorial(num - 1) * num,
 //     }
 // }
+
+// use std::iter::Iterator;
+// let x_index = x.iter().find(|&&x| x == point_x);
+
+pub fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
+    let mut set: HashSet<i32> = HashSet::new();
+    let mut sorted_set: Vec<i32> = Vec::new();
+    let mut result: i32 = 0;
+
+    for point in points {
+        set.insert(point[0]);
+    }
+    sorted_set = set.into_iter().collect();
+    sorted_set.sort();
+
+    for i in 0..sorted_set.len() - 1 {
+        if (sorted_set[i+1] - sorted_set[i]) > result {
+            result = sorted_set[i+1] - sorted_set[i];
+        }
+    }
+
+    return result;
+}
+
+
+use std::collections::HashMap;
+
+pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
+    let mut result:Vec<i32> = Vec::new();
+    let mut map:HashMap<i32, i32> = HashMap::new();
+
+    let mut sorted_nums = nums.clone();
+    sorted_nums.sort();
+
+    let mut last_num = sorted_nums[0];
+    let mut num_size = 0;
+    map.insert(last_num, num_size);
+
+    for i in sorted_nums {
+        if (i != last_num) {
+            map.insert(i, num_size);
+            last_num = i;
+        }
+        num_size = num_size + 1;
+    }
+
+    for i in nums {
+        result.push(*map.get(&i).unwrap());
+    }
+
+
+    return result;
+}
