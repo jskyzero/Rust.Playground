@@ -134,20 +134,19 @@ pub fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     sorted_set.sort();
 
     for i in 0..sorted_set.len() - 1 {
-        if (sorted_set[i+1] - sorted_set[i]) > result {
-            result = sorted_set[i+1] - sorted_set[i];
+        if (sorted_set[i + 1] - sorted_set[i]) > result {
+            result = sorted_set[i + 1] - sorted_set[i];
         }
     }
 
     return result;
 }
 
-
 use std::collections::HashMap;
 
 pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
-    let mut result:Vec<i32> = Vec::new();
-    let mut map:HashMap<i32, i32> = HashMap::new();
+    let mut result: Vec<i32> = Vec::new();
+    let mut map: HashMap<i32, i32> = HashMap::new();
 
     let mut sorted_nums = nums.clone();
     sorted_nums.sort();
@@ -168,6 +167,67 @@ pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
         result.push(*map.get(&i).unwrap());
     }
 
+    return result;
+}
+
+pub fn subtract_product_and_sum(n: i32) -> i32 {
+    let mut digit: Vec<i32> = Vec::new();
+    let mut num: i32 = n;
+
+    while num >= 10 {
+        digit.push(num % 10);
+        num = num / 10;
+    }
+    digit.push(num);
+
+    //     for i in &digit {
+    //         print!("{} ", *i);
+    //     }
+
+    let sum: i32 = digit.iter().sum();
+    let product: i32 = digit.iter().product();
+
+    return product - sum;
+}
+
+pub fn decompress_rl_elist(nums: Vec<i32>) -> Vec<i32> {
+    let mut result: Vec<i32> = Vec::new();
+
+    for i in 0..nums.len() / 2 {
+        for j in 0..nums[2 * i] {
+            result.push(nums[2 * i + 1]);
+        }
+    }
 
     return result;
+}
+
+struct ParkingSystem {
+    plots : Vec<i32>,
+}
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl ParkingSystem {
+    fn new(big: i32, medium: i32, small: i32) -> Self {
+        return ParkingSystem {
+            plots: vec![big, medium, small],
+        };
+    }
+ 
+    fn add_car(&mut self, car_type: i32) -> bool {
+        match car_type {
+        _ => {
+            let size = self.plots[car_type as usize - 1];
+            if size >= 1 {
+                self.plots[car_type as usize - 1] = size - 1;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        }
+    }
 }
