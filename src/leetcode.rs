@@ -134,20 +134,19 @@ pub fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     sorted_set.sort();
 
     for i in 0..sorted_set.len() - 1 {
-        if (sorted_set[i+1] - sorted_set[i]) > result {
-            result = sorted_set[i+1] - sorted_set[i];
+        if (sorted_set[i + 1] - sorted_set[i]) > result {
+            result = sorted_set[i + 1] - sorted_set[i];
         }
     }
 
     return result;
 }
 
-
 use std::collections::HashMap;
 
 pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
-    let mut result:Vec<i32> = Vec::new();
-    let mut map:HashMap<i32, i32> = HashMap::new();
+    let mut result: Vec<i32> = Vec::new();
+    let mut map: HashMap<i32, i32> = HashMap::new();
 
     let mut sorted_nums = nums.clone();
     sorted_nums.sort();
@@ -168,6 +167,168 @@ pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
         result.push(*map.get(&i).unwrap());
     }
 
+    return result;
+}
+
+pub fn subtract_product_and_sum(n: i32) -> i32 {
+    let mut digit: Vec<i32> = Vec::new();
+    let mut num: i32 = n;
+
+    while num >= 10 {
+        digit.push(num % 10);
+        num = num / 10;
+    }
+    digit.push(num);
+
+    //     for i in &digit {
+    //         print!("{} ", *i);
+    //     }
+
+    let sum: i32 = digit.iter().sum();
+    let product: i32 = digit.iter().product();
+
+    return product - sum;
+}
+
+pub fn decompress_rl_elist(nums: Vec<i32>) -> Vec<i32> {
+    let mut result: Vec<i32> = Vec::new();
+
+    for i in 0..nums.len() / 2 {
+        for j in 0..nums[2 * i] {
+            result.push(nums[2 * i + 1]);
+        }
+    }
+
+    return result;
+}
+
+struct ParkingSystem {
+    plots: Vec<i32>,
+}
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl ParkingSystem {
+    fn new(big: i32, medium: i32, small: i32) -> Self {
+        return ParkingSystem {
+            plots: vec![big, medium, small],
+        };
+    }
+
+    fn add_car(&mut self, car_type: i32) -> bool {
+        match car_type {
+            _ => {
+                let size = self.plots[car_type as usize - 1];
+                if size >= 1 {
+                    self.plots[car_type as usize - 1] = size - 1;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+}
+
+// Definition for singly-linked list.
+#[derive(PartialEq, Eq, Clone, Debug)]
+pub struct ListNode {
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
+}
+
+impl ListNode {
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode { next: None, val }
+    }
+}
+
+pub fn get_decimal_value(head: Option<Box<ListNode>>) -> i32 {
+    let mut result: i32 = 0;
+    let mut p = head;
+    while p.clone().unwrap().next != None {
+        result = (result << 1) + p.clone().unwrap().val;
+        p = p.clone().unwrap().next;
+        // print!("{}-{} ",p.clone().unwrap().val, result);
+    }
+    result = (result << 1) + p.unwrap().val;
+
+    return result;
+}
+
+pub fn balanced_string_split(s: String) -> i32 {
+    let mut result = 0;
+    let mut l = 0;
+    let mut r = 0;
+    let mut list: Vec<char> = s.clone().chars().collect();
+
+    for i in list {
+        match i {
+            'L' => {
+                l = l + 1;
+                if l == r {
+                    l = 0;
+                    r = 0;
+                    result = result + 1;
+                }
+            }
+            'R' => {
+                r = r + 1;
+                if l == r {
+                    l = 0;
+                    r = 0;
+                    result = result + 1;
+                }
+            }
+            _ => {}
+        }
+    }
+
+    return result;
+}
+
+
+pub fn xor_operation(n: i32, start: i32) -> i32 {
+    let mut result = 0;
+
+    for i in 0..n {
+        result = result ^ (start + 2 * i);
+    }
+
+    return  result ^ 0;
+}
+
+pub fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
+    let mut result: Vec<i32> = Vec::new();
+
+    for i in 0..nums.len() {
+        result.insert(index[i as usize] as usize, nums[i as usize]);
+    }
+    return result;
+}
+
+pub fn max_depth(s: String) -> i32 {
+    let mut depth = 0;
+    let mut result = 0;
+    let mut list:Vec<char> = s.chars().collect();
+
+    for c in list {
+        match c {
+            '(' => {
+                depth = depth + 1;
+                if depth > result {
+                    result = depth;
+                }
+            }
+            ')' => {
+                depth = depth - 1;
+            }
+            _ => {}
+        }
+    }
 
     return result;
 }
