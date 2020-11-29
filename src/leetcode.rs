@@ -12,13 +12,13 @@ pub fn kids_with_candies(candies: Vec<i32>, extra_candies: i32) -> Vec<bool> {
     let mut max_candy: i32 = 0;
     let mut result: Vec<bool> = Vec::new();
 
-    for candy in &candies {
+    for candy in candies.iter() {
         if *candy > max_candy {
             max_candy = *candy;
         }
     }
 
-    for candy in &candies {
+    for candy in candies.iter() {
         let new_candy = *candy + extra_candies;
         if new_candy >= max_candy {
             result.push(true);
@@ -331,4 +331,18 @@ pub fn max_depth(s: String) -> i32 {
     }
 
     return result;
+}
+
+pub fn main336() {
+    let mut counter = if false {1} else {0};
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2
+        }
+    };
+
+    println!("The result is {}", result);
 }

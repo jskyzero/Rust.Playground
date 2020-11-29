@@ -6,6 +6,10 @@ mod leetcode;
 
 
 fn main() {
+    leetcode::main336();
+}
+
+fn main2() {
     println!("Guess Game v0.1");
     
     let secret_number = rand::thread_rng().gen_range(1, 101);
