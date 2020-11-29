@@ -41,3 +41,22 @@ fn main2() {
         };
     }
 }
+
+pub fn num_teams(rating: Vec<i32>) -> i32 {
+    let mut result:i32 = 0;
+
+    for i in 0..rating.len() {
+        for j in i..rating.len() {
+            for z in j..rating.len() {
+                if rating[z] > rating[j] && rating[j] > rating[i] {
+                    result= result + 1;
+                }
+                if rating[z] < rating[j] && rating[j] < rating[i] {
+                    result= result + 1;
+                } 
+            }
+        }
+    }
+
+    return result;
+}
