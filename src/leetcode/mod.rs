@@ -333,6 +333,26 @@ pub fn max_depth(s: String) -> i32 {
     return result;
 }
 
+
+pub fn num_teams(rating: Vec<i32>) -> i32 {
+    let mut result:i32 = 0;
+
+    for i in 0..rating.len() {
+        for j in i..rating.len() {
+            for z in j..rating.len() {
+                if rating[z] > rating[j] && rating[j] > rating[i] {
+                    result= result + 1;
+                }
+                if rating[z] < rating[j] && rating[j] < rating[i] {
+                    result= result + 1;
+                } 
+            }
+        }
+    }
+
+    return result;
+}
+
 pub fn main336() {
     let mut counter = if false {1} else {0};
 
