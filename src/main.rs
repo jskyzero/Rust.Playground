@@ -1,8 +1,5 @@
-#[allow(dead_code)]
-mod leetcode;
-
-extern crate support;
+use leetcode::part1::part1_0::main336;
 
 fn main() {
-    leetcode::main336();
+    main336();
 }

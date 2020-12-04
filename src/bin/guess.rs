@@ -4,7 +4,7 @@ use std::io;
 
 
 fn main() {
-    println!("Guess Game v0.1");
+    println!("--Guess Game v0.1--");
     
     let secret_number = rand::thread_rng().gen_range(1, 101);
     println!("The Secret Number is {}", secret_number);
@@ -21,6 +21,7 @@ fn main() {
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
+            // continue make the other logic do not run
         };
 
         println!("you guessed: {}", guess);
