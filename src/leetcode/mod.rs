@@ -1,3 +1,4 @@
+
 pub fn running_sum(nums: Vec<i32>) -> Vec<i32> {
     let mut next: i32 = 0;
     let mut result: Vec<i32> = Vec::new();
@@ -124,7 +125,7 @@ pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
 
 pub fn max_width_of_vertical_area(points: Vec<Vec<i32>>) -> i32 {
     let mut set: HashSet<i32> = HashSet::new();
-    let mut sorted_set: Vec<i32> = Vec::new();
+    let mut sorted_set: Vec<i32>;
     let mut result: i32 = 0;
 
     for point in points {
@@ -156,7 +157,7 @@ pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
     map.insert(last_num, num_size);
 
     for i in sorted_nums {
-        if (i != last_num) {
+        if i != last_num {
             map.insert(i, num_size);
             last_num = i;
         }
@@ -194,7 +195,7 @@ pub fn decompress_rl_elist(nums: Vec<i32>) -> Vec<i32> {
     let mut result: Vec<i32> = Vec::new();
 
     for i in 0..nums.len() / 2 {
-        for j in 0..nums[2 * i] {
+        for _ in 0..nums[2 * i] {
             result.push(nums[2 * i + 1]);
         }
     }
@@ -263,7 +264,7 @@ pub fn balanced_string_split(s: String) -> i32 {
     let mut result = 0;
     let mut l = 0;
     let mut r = 0;
-    let mut list: Vec<char> = s.clone().chars().collect();
+    let list: Vec<char> = s.clone().chars().collect();
 
     for i in list {
         match i {
@@ -313,7 +314,7 @@ pub fn create_target_array(nums: Vec<i32>, index: Vec<i32>) -> Vec<i32> {
 pub fn max_depth(s: String) -> i32 {
     let mut depth = 0;
     let mut result = 0;
-    let mut list:Vec<char> = s.chars().collect();
+    let list:Vec<char> = s.chars().collect();
 
     for c in list {
         match c {
