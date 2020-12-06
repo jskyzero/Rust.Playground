@@ -22,6 +22,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "config"
+version = "0.1.0"
+dependencies = [
+ "protobuf",
+]
+
+[[package]]
+name = "engine"
+version = "0.1.0"
+dependencies = [
+ "config",
+]
+
+[[package]]
 name = "fuchsia-cprng"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -41,10 +55,10 @@ checksum = "9457b06509d27052635f90d6466700c65095fdf75409b3fbdd903e988b886f49"
 name = "playground"
 version = "0.1.0"
 dependencies = [
+ "config",
+ "engine",
  "leetcode",
- "protobuf",
  "rand",
- "support",
 ]
 
 [[package]]
@@ -83,10 +97,6 @@ name = "rand_core"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9c33a3c44ca05fa6f1807d8e6743f3824e8509beca625669633be0acbdf509dc"
-
-[[package]]
-name = "support"
-version = "0.1.0"
 
 [[package]]
 name = "winapi"

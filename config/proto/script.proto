@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// package helloworld.proto;
+
+message Script {
+  ScriptType script_type = 1;
+  repeated string arguments = 2;
+}
+
+enum ScriptType {
+  DEFAULT = 0;
+  LOG = 1;
+}
+
+message Scripts {
+  repeated Script scripts = 1;
+}

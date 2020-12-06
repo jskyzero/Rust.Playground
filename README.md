@@ -8,6 +8,22 @@
 
 I decide to learn rust for it's safe memary manage system. maybe I will use rust in Computer Graphics & Game Develop
 
+## Structure
+
++ assets
+  + obj, img, shader, and other assets
++ config
+  + proto, config lib
++ engine
+  + engine lib
++ leetcode
+  + leetcode exserise
++ src
+  + main src code
++ tools
+  + some build scripts
+
+
 ## Tips
 
 + install: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
