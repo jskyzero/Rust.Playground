@@ -22,7 +22,7 @@ jobs:
       run: cargo test --verbose
 
   finish:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
