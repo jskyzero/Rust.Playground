@@ -10,6 +10,7 @@ message Script {
 enum ScriptType {
   DEFAULT = 0;
   LOG = 1;
+  TEST_UNDER_CONSTRUCTION = 2;
 }
 
 message Scripts {
