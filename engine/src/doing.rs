@@ -2,11 +2,9 @@ pub fn doing() {
     main_1_1_1();
 }
 
-extern crate glfw;
-use self::glfw::{Context, Key, Action};
-
-extern crate gl;
-
+use gl;
+use glfw;
+use glfw::{Context, Key, Action};
 use std::sync::mpsc::Receiver;
 
 // settings
@@ -17,7 +15,7 @@ pub fn main_1_1_1() {
     // glfw: initialize and configure
     // ------------------------------
     let mut glfw = glfw::init(glfw::FAIL_ON_ERRORS).unwrap();
-    glfw.window_hint(glfw::WindowHint::ContextVersion(3, 3));
+    glfw.window_hint(glfw::WindowHint::ContextVersion(4, 1));
     glfw.window_hint(glfw::WindowHint::OpenGlProfile(glfw::OpenGlProfileHint::Core));
     #[cfg(target_os = "macos")]
     glfw.window_hint(glfw::WindowHint::OpenGlForwardCompat(true));
