@@ -4,7 +4,7 @@ pub fn doing() {
 
 use gl;
 use glfw;
-use glfw::{Context, Key, Action};
+use glfw::{Action, Context, Key};
 use std::sync::mpsc::Receiver;
 
 // settings
@@ -16,13 +16,21 @@ pub fn main_1_1_1() {
     // ------------------------------
     let mut glfw = glfw::init(glfw::FAIL_ON_ERRORS).unwrap();
     glfw.window_hint(glfw::WindowHint::ContextVersion(4, 1));
-    glfw.window_hint(glfw::WindowHint::OpenGlProfile(glfw::OpenGlProfileHint::Core));
+    glfw.window_hint(glfw::WindowHint::OpenGlProfile(
+        glfw::OpenGlProfileHint::Core,
+    ));
     #[cfg(target_os = "macos")]
     glfw.window_hint(glfw::WindowHint::OpenGlForwardCompat(true));
 
     // glfw window creation
     // --------------------
-    let (mut window, events) = glfw.create_window(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", glfw::WindowMode::Windowed)
+    let (mut window, events) = glfw
+        .create_window(
+            SCR_WIDTH,
+            SCR_HEIGHT,
+            "LearnOpenGL",
+            glfw::WindowMode::Windowed,
+        )
         .expect("Failed to create GLFW window");
 
     window.make_current();
@@ -56,7 +64,9 @@ fn process_events(window: &mut glfw::Window, events: &Receiver<(f64, glfw::Windo
                 // height will be significantly larger than specified on retina displays.
                 unsafe { gl::Viewport(0, 0, width, height) }
             }
-            glfw::WindowEvent::Key(Key::Escape, _, Action::Press, _) => window.set_should_close(true),
+            glfw::WindowEvent::Key(Key::Escape, _, Action::Press, _) => {
+                window.set_should_close(true)
+            }
             _ => {}
         }
     }
