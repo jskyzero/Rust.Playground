@@ -3,7 +3,7 @@ name = "playground"
 version = "0.1.0"
 authors = ["jskzyero <jskyzero@outlook.com>"]
 edition = "2018"
-
+default-run = "playground"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
