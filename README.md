@@ -33,9 +33,25 @@ I decide to learn rust for it's safe memary manage system. maybe I will use rust
 + new project: `cargo new playground`
 + protobuf
 
-```Bash
+```bash
 # https://github.com/stepancheg/rust-protobuf/tree/master/protobuf-codegen
 brew install protobuf
 cargo install protobuf-codegen
 protoc --rust_out src/ proto/*
+```
+
++ M1
+
+```bash
+rustup target list
+rustup target add aarch64-apple-darwin
+cargo build --target=aarch64-apple-darwin
+cargo run --target=aarch64-apple-darwin
+```
+
++ create a `.cargo/config`
+
+```toml
+[build]
+target = "my-custom-target"
 ```
